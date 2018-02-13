@@ -6,8 +6,7 @@ from .models import Book
 
 def index(request):
     latest_book_list = Book.objects.order_by('-pub_date')[:5]
-    template = loader.get_template('kotobjy/index.html')
     context = {
         'latest_book_list': latest_book_list,
     }
-    return HttpResponse(template.render(context, request))
+    return render(request, 'kotobjy/index.html', context)
