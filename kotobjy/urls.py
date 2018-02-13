@@ -1,7 +1,11 @@
+from django.urls import path
+from django.conf.urls import url
+from . import views
+from django.contrib.auth.views import login
+
 app_name = 'kotobjy'
 urlpatterns = [
-    # path('', views.index, name='index'),
-    # path('<int:question_id>/', views.detail, name='detail'),
-    # path('<int:question_id>/results/', views.results, name='results'),
-    # path('<int:question_id>/vote/', views.vote, name='vote'),
+    path('', views.index, name='index'),
+    path('login/kotobjy/', views.index, name='index'),
+    url(r'^login/$', login, {'template_name': 'kotobjy/login.html'}),
 ]
