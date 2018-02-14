@@ -22,7 +22,7 @@ class User_wish_list(models.Model):
 
 
 # books owned by authors
-class Author_books:
+class Author_books(models.Model):
     book_id = models.ForeignKey('book', on_delete=models.CASCADE,)
     author_id = models.ForeignKey('author', on_delete=models.CASCADE,)
 
@@ -44,8 +44,8 @@ class Ex_user(models.Model):
 
 
 class User_fav(models.Model):
-    user_id = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_id = models.ManyToManyField(User)
     cat_name = models.CharField(max_length=200, null=False)
 
-    class Meta:
-        unique_together = (("user_id","cat_name"))
+    # class Meta:
+    #     unique_together = (("user_id","cat_name"))
