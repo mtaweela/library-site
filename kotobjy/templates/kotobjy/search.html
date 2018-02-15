@@ -5,13 +5,12 @@
 {% block content %}
     <link rel="stylesheet" type="text/css" href="{% static 'kotobjy/style.css' %}" />
 
-    {% if latest_book_list %}
-        <ul>
-        {% for book in latest_book_list %}
-            <li><a href="/kotobjy/{{ book.id }}/">{{ book.title }}</a></li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No books are available.</p>
-    {% endif %}
-    {% endblock %}
+    <form action="{% url 'kotobjy:searchBook' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <label>Title</label>
+        <!-- <input type="text" name="search"/> -->
+        <input type="submit" name="submit"/>
+    </form>
+
+{% endblock %}

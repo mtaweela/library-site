@@ -44,8 +44,5 @@ class Ex_user(models.Model):
 
 
 class User_fav(models.Model):
-    user_id = models.ManyToManyField(User)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     cat_name = models.CharField(max_length=200, null=False)
-
-    # class Meta:
-    #     unique_together = (("user_id","cat_name"))
