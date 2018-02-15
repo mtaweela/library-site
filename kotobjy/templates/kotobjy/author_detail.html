@@ -1,8 +1,8 @@
 {% extends 'base.html'%}
-% load static %}
+{% load static %}
 
       {% block head%}
-            <title> Author Detail</title>
+            <title> Book Detail</title>
       {% endblock %}
 
 
@@ -11,11 +11,14 @@
       <br>
       <br><br>
       <div class="container">
-            <h1>Book Info</h1>
-            <p>Book Title: {{ author.name }}</p>
-            <p> Category: {{ author.bio }}</p>
-            
+            <h1>Author Info</h1>
 
+            <p>Author Name: {{ book.title }}</p>
+            <!-- <a href="{% url 'author_detail' author.id %}" >
+                  <p>book Author: {{ author.name }}</p>
+            </a> -->
+
+            <p> Bio: {{ author.bio }}</p>
             <img src="{% static 'Kotobjy/pic/' %}{{author.pic}}"  width="240">
 
             <!-- <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" /> -->
