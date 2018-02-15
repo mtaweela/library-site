@@ -11,4 +11,7 @@ urlpatterns = [
     path('search/', views.searchBook, name='searchBook'),
     url(r'^login/$', login, {'template_name': 'kotobjy/login.html'}),
     url(r'^logout/$', logout, {'next_page': 'kotobjy/index.html'}, name='logout'),
+    path('book/<int:book_id>/', views.bookDetail, name='book_detail'),
+    path('author/<int:author_id>/', views.authorDetail, name='author_detail'),
+    path('books/', views.BookListView.as_view(), name='book_list'),
 ]

@@ -47,3 +47,24 @@ def searchBook(request):
     else:
         results = searchResult
         return render(request, 'kotobjy/search.html',{ 'searchform':searchform, 'results':results})
+
+
+
+
+class BookListView(ListView):
+    model = Book
+
+
+def bookDetail(request, book_id):
+    book = Book.objects.get(id=book_id)
+    aid = Author_books.objects.get(book_id=book.id).author_id_id
+    author = Author.objects.get(id=aid)
+    context = {'book': book, 'author': author}
+    return render(request, 'Kotobjy/book_detail.html', context)
+
+
+def authorDetail(request, author_id):
+    author = Author.objects.get(id=author_id)
+    context = {'author': author}
+    return render(request, 'Kotobjy/author_detail.html', context)
+
