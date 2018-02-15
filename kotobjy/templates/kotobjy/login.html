@@ -1,8 +1,8 @@
   <center>  
     <h2>Login</h2>
-    <form method="post">
+    <form action="{% url 'kotobjy:searchBook' %}" method="post">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">Login</button>
+      <button type="submit" name="submit">Login</button>
     </form>
   </center>
