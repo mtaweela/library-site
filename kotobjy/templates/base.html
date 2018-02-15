@@ -11,6 +11,13 @@
             <div class="container">
                 <div id='logo'>
                     <img src="{% static 'kotobjy/pics/7.jpg' %}" alt="logo" width="50" height="50">
+                    
+                    <form action="{% url 'kotobjy:searchBook' %}" method="post">
+                            {% csrf_token %}
+                            {{ searchform.as_p }}
+                            <label>Title</label>
+                            <input type="submit" name="submit"/>
+                    </form>
                 </div>
             </div>
                 

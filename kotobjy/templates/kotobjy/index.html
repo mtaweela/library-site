@@ -19,11 +19,4 @@
             
         </ul>
 
-
-    <form action="{% url 'kotobjy:index' %}" method="post">
-        {% csrf_token %}
-        <input type="text" name="search"/>
-        <input type="submit" name="search"/>
-    </form>
-
 {% endblock %}
