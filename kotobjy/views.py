@@ -59,11 +59,21 @@ def searchBook(request):
 def bookDetail(request, book_id):
     searchform = Search()
     book = Book.objects.get(id=book_id)
-    # aid = Author_books.objects.get(book_id=book.id).author_id_id
-    # author = Author.objects.get(id=aid)
+    aid = Author_books.objects.filter(book_id=book.id)
+    
+    if not aid:
+        flag = False
+        author = 0
+    else:
+        flag = True
+        authId = aid[0].author_id_id
+        author = Author.objects.get(id=authId)
+    
     context = {
         'book': book,
         'searchform':searchform,
+        'author': author,
+        'flag':flag
     }
     return render(request, 'kotobjy/bookDetail.html', context)
 

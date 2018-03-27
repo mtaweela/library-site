@@ -2,11 +2,24 @@ li a {
     color: blue ;
 }
 
+nav {
+    max-height: 50px;
+}
+
 body{
     background-size: cover;    
     color: white;
-    position: relative; 
+    position: relative;
     padding-bottom: 6rem;
+    min-height: 100%;
+}
+
+button {
+    margin-top: 10px;
+}
+
+.mySearchForm {
+    margin-top: 30px;
 }
 
 .footer{

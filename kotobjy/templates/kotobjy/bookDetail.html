@@ -2,19 +2,29 @@
 {% load static %}
 
 {% block head%}
-
+      <title> Book Detail</title>
 {% endblock %}
 
 {% block body %}
 <br>
 <br><br>
 <div class="container" id="box-con">
-      <h1>Book Info</h1>
-      <p>Book Title: {{ book.title }}</p>
-      <img src="{% static 'kotobjy/pic/' %}/{{ book.pic }}" alt="logo" width="240"/> 
-      <p> Category: {{ book.category }}</p>
-      <p>Published: {{ book.pub_date }} </p>
-      <p>Describtion: {{ book.describtion }} </p>
+	<h1>Book Info</h1>
+	<p>Book Title: {{ book.title }}</p>
+	<p>book Author:
+	{% if flag %}
+		<a href="{% url 'kotobjy:authorDetail' author.id %}" >
+			{{ author.name }}
+		</a>	
+	{% else %}
+		Authuor not known
+	{% endif %}
+	</p>
+
+	<img src="{% static 'kotobjy/pic/' %}/{{ book.pic }}" alt="logo" width="240"/> 
+	<p> Category: {{ book.category }}</p>
+	<p>Published: {{ book.pub_date }} </p>
+	<p>Describtion: {{ book.describtion }} </p>
 </div>
 
 {% endblock %}
