@@ -1,27 +1,27 @@
 {% extends 'base.html'%}
 {% load static %}
 
-      {% block head%}
-            <title> Book Detail</title>
-      {% endblock %}
+{% block head%}
+      <title> Book Detail</title>
+{% endblock %}
 
 
 
-      {% block body %}
+{% block body %}
+
+<div class="box-con">
       <br>
       <br><br>
       <div class="container">
             <h1>Author Info</h1>
-
+            <img src="{% static 'kotobjy/pic/' %}/{{author.pic}}"  width="200">
             <p>Author Name: {{ book.title }}</p>
             <a href="{% url 'kotobjy:authorDetail' author.id %}" >
                   <p> {{ author.name }}</p>
             </a>
 
             <p> Bio: {{ author.bio }}</p>
-            <img src="{% static 'Kotobjy/pic/' %}{{author.pic}}"  width="240">
-
             <link rel="stylesheet" type="text/css" href="{% static 'kotobjy/style/style.css' %}" />
       </div>
-
-      {% endblock %}
+</div>
+{% endblock %}

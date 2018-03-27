@@ -7,7 +7,7 @@
 
     {% for book in results %}
         <li> <a href="/kotobjy/book/{{ book.id }}/">{{ book.title }}</a> 
-            <img src="{% static 'kotobjy/pics/'%}/{{ book.pic }}" alt="logo" width="50" height="50"/> 
+            <img src="{% static 'kotobjy/pic/' %}/{{ book.pic }}" alt="logo" width="50" height="50"/> 
             <p>Book Description</p>
             <p>{{book.describtion}}</p>
         </li>

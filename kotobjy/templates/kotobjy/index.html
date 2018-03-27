@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
-
 {% load static %}
-{% block title %}home page{% endblock %}
+
+{% block head%}
+    <title> Index</title>
+{% endblock %}
+
 {% block body %}
     <link rel="stylesheet" type="text/css" href="{% static 'kotobjy/style.css' %}" />
 
@@ -9,7 +12,7 @@
             
             {% for book in latest_book_list %}
                 <li> <a href="/kotobjy/book/{{ book.id }}/">{{ book.title }}</a> 
-                    <img src="{% static 'kotobjy/pics/'%}/{{ book.pic }}" alt="logo" width="50" height="50"/> 
+                    <img src="{% static 'kotobjy/pic/' %}/{{ book.pic }}" alt="logo" width="50" height="50"/> 
                     <p>Book Description</p>
                     <p>{{book.describtion}}</p>
                 </li>

@@ -16,3 +16,8 @@ li a {
     text-align: center;
     padding: 10px 0
 }
+
+.box-con{
+    margin: 20px;
+    background-color:rgba(0, 0, 0, 0.4)
+}
