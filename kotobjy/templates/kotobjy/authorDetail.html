@@ -5,12 +5,7 @@
       <title> Book Detail</title>
 {% endblock %}
 
-
-
 {% block body %}
-
-<div id="box-con">
-
       <div class="container">
             <h1>Author Info</h1>
             <img src="{% static 'kotobjy/pic/' %}/{{author.pic}}"  width="200">
@@ -22,5 +17,4 @@
             <p> Bio: {{ author.bio }}</p>
             <link rel="stylesheet" type="text/css" href="{% static 'kotobjy/style/style.css' %}" />
       </div>
-</div>
 {% endblock %}

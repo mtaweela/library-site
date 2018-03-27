@@ -25,7 +25,7 @@ button {
 .footer{
     background: #333;
     text-align: center;
-    padding: 10px 0;
+    padding: 10 0;
     position: absolute;
     left: 0;
     bottom: 0;
@@ -33,6 +33,7 @@ button {
 }
 
 #box-con{
+    margin-top: 10px;
     padding: 10px;
     background-color:rgba(0, 0, 0, 0.8)
 }

@@ -6,10 +6,7 @@
 {% endblock %}
 
 {% block body %}
-<link rel="stylesheet" type="text/css" href="{% static 'kotobjy/style.css' %}" />
-<div id="box-con">
     <ul>
-        
         {% for book in latest_book_list %}
             <li> <a href="/kotobjy/book/{{ book.id }}/">{{ book.title }}</a> 
                 <img src="{% static 'kotobjy/pic/' %}/{{ book.pic }}" alt="logo" width="50" height="50"/> 
@@ -21,5 +18,4 @@
         {% endfor %}
         
     </ul>
-</div>
 {% endblock %}
