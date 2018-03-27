@@ -8,7 +8,7 @@
       {% block body %}
       <br>
       <br><br>
-      <div class="container">
+      <div class="container" id="box-con">
             <h1>Book Info</h1>
             <p>Book Title: {{ book.title }}</p>
             <a href="{% url 'kotobjy:authorDetail' author.id %}" >
