@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, get_user_model, authenticate
 
 class Search(forms.Form):
-    search = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control mr-sm-2' , 'id': "ex2",'placeholder':"Search"}),label="Search", max_length=200)
+    search = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control mr-sm-2' , 'id': "ex2",'placeholder':"Search"}), max_length=200)
 
 class UserLoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control mr-sm-2' , 'id': "ex2"}))

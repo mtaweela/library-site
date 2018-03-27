@@ -32,10 +32,12 @@ def userHome(request):
 
 @login_required(login_url='/kotobjy/login')
 def user_profile(request, user_id):
+    searchform = Search()
     user = User.objects.get(id=user_id)
     follows = Follow.objects.get(user_id_id=2)
     context = {
         'user': user,
+        'searchform':searchform,
     }
     return render(request, 'kotobjy/user.html', context)
 
@@ -55,14 +57,19 @@ def searchBook(request):
 
 @login_required(login_url='/kotobjy/login')
 def bookDetail(request, book_id):
+    searchform = Search()
     book = Book.objects.get(id=book_id)
-    aid = Author_books.objects.get(book_id=book.id).author_id_id
-    author = Author.objects.get(id=aid)
-    context = {'book': book, 'author': author}
+    # aid = Author_books.objects.get(book_id=book.id).author_id_id
+    # author = Author.objects.get(id=aid)
+    context = {
+        'book': book,
+        'searchform':searchform,
+    }
     return render(request, 'kotobjy/bookDetail.html', context)
 
 @login_required(login_url='/kotobjy/login')
 def authorDetail(request, author_id):
+    searchform = Search()
     author = Author.objects.get(id=author_id)
     context = {'author': author}
     return render(request, 'kotobjy/authorDetail.html', context)
@@ -70,6 +77,7 @@ def authorDetail(request, author_id):
 # logging and authentication 
 
 def login_view(request):
+    searchform = Search()
     next = request.GET.get('next')
     form = UserLoginForm(request.POST or None)
     title = "Login"
@@ -82,9 +90,10 @@ def login_view(request):
             return redirect(next)
         return redirect("/kotobjy/home")
 
-    return render(request, "kotobjy/form.html", {"form":form, "title": title})
+    return render(request, "kotobjy/form.html", {'searchform':searchform, "form":form, "title": title})
 
 def register_view(request):
+    searchform = Search()
     next = request.GET.get('next')
     title = "Register"
     form = UserRegisterForm(request.POST or None)
@@ -99,7 +108,7 @@ def register_view(request):
         if next:
             return redirect(next)
         return redirect("/kotobjy/home")
-    return render(request, "kotobjy/form.html", {"form":form, "title": title})
+    return render(request, "kotobjy/form.html", {'searchform':searchform, "form":form, "title": title})
 
 def logout_view(request):
     logout(request)
