@@ -1,0 +1,22 @@
+- logging
+	* log in page css
+	* log out page
+	
+- permessions
+	* user can not access un permited data or other peoples data
+	
+- search page
+	* pagination
+	* search form in the middle of the page
+	
+- main page
+	* user books favourite or in advance
+	
+- buttons
+	* follow
+	* read
+	* comment .. evaluation
+	
+- DB manipulation
+	* users data and retrieving
+	* other data retrieving

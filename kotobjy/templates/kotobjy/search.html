@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}home page{% endblock %}
+{% block body %}
+    <link rel="stylesheet" type="text/css" href="{% static 'kotobjy/style/style.css' %}" />
+
+    {% for book in results %}
+        <li> <a href="/kotobjy/book/{{ book.id }}/">{{ book.title }}</a> 
+            <img src="{% static 'kotobjy/pics/'%}/{{ book.pic }}" alt="logo" width="50" height="50"/> 
+            <p>Book Description</p>
+            <p>{{book.describtion}}</p>
+        </li>
+    {% empty %}
+        <p>No books are available.</p>
+    {% endfor %}
+
+{% endblock %}

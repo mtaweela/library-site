@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+{% load static %}
+
+      {% block head%}
+            <title> Book Detail</title>
+      {% endblock %}
+
+
+
+      {% block body %}
+      <br>
+      <br><br>
+      <div class="container">
+            <h1>Book Info</h1>
+
+            <p>Book Title: {{ book.title }}</p>
+            <a href="{% url 'kotobjy:authorDetail' author.id %}" >
+                  <p>book Author: {{ author.name }}</p>
+            </a>
+
+
+
+            <p> Category: {{ book.category }}</p>
+            <p>Published: {{ book.pub_date }} </p>
+            <p>Describtion: {{ book.describtion }} </p>
+
+            <img src="{% static 'Kotobjy/pic/' %}{{book.pic}}"  width="240">
+
+            <!-- <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" /> -->
+      </div>
+
+      {% endblock %}
