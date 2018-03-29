@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}home page{% endblock %}
+{% block body %}
+<div class="center">
+    <table >
+            <tr>
+                <th></th>
+                <th>User Name</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <tr>
+                <td><img src="{% static 'kotobjy/pic/' %}/{{ userpicsmap.0 }}" alt="logo" width="140" height="200"/></td>
+                <td><h3><a href="/kotobjy/userProfile/{{ usersList.0.id }}/">{{usersList.0.username}}</a></h3></td>
+                <td>{{usersList.0.email}}</td>
+            </tr>
+            <tr>
+                <td><img src="{% static 'kotobjy/pic/' %}/{{ userpicsmap.1 }}" alt="logo" width="140" height="200"/></td>
+                <td><h3><a href="/kotobjy/userProfile/{{ usersList.1.id }}/">{{usersList.1.username}}</a></h3></td>
+                <td>{{usersList.1.email}}</td>
+            </tr>
+            <tr>
+                <td><img src="{% static 'kotobjy/pic/' %}/{{ userpicsmap.2 }}" alt="logo" width="140" height="200"/></td>
+                <td><h3><a href="/kotobjy/userProfile/{{ usersList.2.id }}/">{{usersList.2.username}}</a></h3></td>
+                <td>{{usersList.2.email}}</td>
+            </tr>
+            <tr>
+                <td><img src="{% static 'kotobjy/pic/' %}/{{ userpicsmap.3 }}" alt="logo" width="140" height="200"/></td>
+                <td><h3><a href="/kotobjy/userProfile/{{ usersList.3.id }}/">{{usersList.3.username}}</a></h3></td>
+                <td>{{usersList.3.email}}</td>
+            </tr>
+    </table>
+    <form class="form-inline mt-2 mt-md-0 " action="{% url 'kotobjy:users' %}" method="POST">
+        {% csrf_token %}
+        <button class="btn btn-outline-success" name="previous" value="{{ page }}" type="submit">Previous</button>
+        <button class="btn btn-outline-success" name="next" value="{{ page }}" type="submit">Next</button>        
+    </form>
+</div>
+{% endblock %}

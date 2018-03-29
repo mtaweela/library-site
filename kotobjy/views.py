@@ -7,8 +7,9 @@ from django.views.generic import ListView, DetailView
 from django.contrib.auth import login, logout, get_user_model, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import UserLoginForm, Search, UserRegisterForm
+from django.core.paginator import Paginator
 
-# this is the page before logging in 
+
 def index(request):
     searchform = Search()
     latest_book_list = Book.objects.order_by('-pub_date')[:5]
@@ -18,7 +19,7 @@ def index(request):
     }
     return render(request, 'kotobjy/index.html', context)
 
-# this the main page user is directed to once he log in
+
 @login_required(login_url='/kotobjy/login')
 def userHome(request):
     searchform = Search()
@@ -31,12 +32,58 @@ def userHome(request):
     return render(request, 'kotobjy/index.html', context)
 
 @login_required(login_url='/kotobjy/login')
+def Users(request):
+    searchform = Search()
+    objects = User.objects.all()
+    p = Paginator(objects, 4)
+    page = 1
+
+    if request.POST.get("next"):
+        if int(request.POST.get("next")) < p.num_pages:
+            page = int( request.POST.get("next")) +1
+    elif request.POST.get("previous"):
+        if int(request.POST.get("previous")) > 1:
+            page = int( request.POST.get("previous")) -1
+
+    if page <= p.num_pages and page > 0:
+        usersList = p.page(page)
+    else:
+        usersList = []
+
+    userpics = Ex_user.objects.all()
+
+    i = 0
+    userpicsmap = {}
+    for user in usersList:
+        if userpics.filter(user_id=user.id):
+            userpicsmap[i] = userpics.filter(user_id=user.id)[0].pic
+        else:
+            userpicsmap[i] = "default.png"
+        i+=1
+
+    page = str(page)
+    context = {
+        'usersList': usersList,
+        'userpicsmap': userpicsmap,
+        'page': page,
+        'searchform':searchform,
+    }
+    return render(request, 'kotobjy/users.html', context)
+
+# add user books and followed authors
+@login_required(login_url='/kotobjy/login')
 def user_profile(request, user_id):
     searchform = Search()
     user = User.objects.get(id=user_id)
     follows = Follow.objects.get(user_id_id=2)
+    userpics = Ex_user.objects.all()
+    if userpics.filter(user_id=user.id):
+        userpic = userpics.filter(user_id=user.id)[0].pic
+    else:
+        userpic = "default.png"    
     context = {
         'user': user,
+        'userpic': userpic,
         'searchform':searchform,
     }
     return render(request, 'kotobjy/user.html', context)
@@ -50,7 +97,7 @@ def searchBook(request):
         print(request.POST.get("search"))
     except Exception:
         results = []
-        return render(request, 'kotobjy/search.html',{ 'results':results})
+        return render(request, 'kotobjy/search.html',{ 'searchform':searchform, 'results':results})
     else:
         results = searchResult
         return render(request, 'kotobjy/search.html',{ 'searchform':searchform, 'results':results})
@@ -81,7 +128,10 @@ def bookDetail(request, book_id):
 def authorDetail(request, author_id):
     searchform = Search()
     author = Author.objects.get(id=author_id)
-    context = {'author': author}
+    context = {
+        'author': author,
+        'searchform':searchform,
+    }
     return render(request, 'kotobjy/authorDetail.html', context)
 
 # logging and authentication 

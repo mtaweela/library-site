@@ -3,8 +3,21 @@
 {% load static %}
 {% block title %}home page{% endblock %}
 {% block body %}
-    <link rel="stylesheet" type="text/css" href="{% static 'kotobjy/style.css' %}" />
-
-    <p>User Name: {{user.username}}</p>
-    <p>Email: {{user.email}}</p>
+<div class="center">
+    <table >
+            <tr>
+                <th></th>
+                <th>User Name</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+            </tr>
+            
+            <tr>
+                <td><img src="{% static 'kotobjy/pic' %}/{{ userpic }}" alt="logo" width="140" height="200"/></td>
+                <td><h3><a href="/kotobjy/userProfile/{{ user.id }}/">{{user.username}}</a></h3></td>
+                <td>{{user.email}}</td>
+            </tr>
+    </table>
+</div>
 {% endblock %}
