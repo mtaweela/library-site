@@ -12,12 +12,7 @@ from django.core.paginator import Paginator
 
 def index(request):
     searchform = Search()
-    latest_book_list = Book.objects.order_by('-pub_date')[:5]
-    context = {
-        'latest_book_list': latest_book_list,
-        'searchform':searchform,
-    }
-    return render(request, 'kotobjy/index.html', context)
+    return render(request, 'kotobjy/index.html', {'searchform':searchform})
 
 
 #################### users manipulation ######
@@ -26,27 +21,57 @@ def index(request):
 @login_required(login_url='/kotobjy/login')
 def userHome(request):
     searchform = Search()
-    latest_book_list = Book.objects.order_by('-pub_date')[:5]
-    bookList = [bid.id for bid in latest_book_list]
+    objects = Book.objects.all()
+    
+    p = Paginator(objects, 4)
+
+    if request.POST.get("next"):
+        if int(request.POST.get("next")) < p.num_pages:
+            page = int( request.POST.get("next")) +1
+        else:
+            page = int( request.POST.get("next"))
+    elif request.POST.get("previous"):
+        if int(request.POST.get("previous")) > 1:
+            page = int( request.POST.get("previous")) -1
+        else:
+            page = int( request.POST.get("previous"))
+    else:
+        page = 1
+
+    if page <= p.num_pages and page > 0:
+        bookList = p.page(page)
+    else:
+        bookList = []
+
+    userpics = Ex_user.objects.all()
+
+
+    # bookList = [bid.id for bid in latest_book_list]
     context = {
-        'latest_book_list': latest_book_list,
+        'latest_book_list': bookList,
+        'page': page,
         'searchform':searchform,
     }
-    return render(request, 'kotobjy/index.html', context)
+    return render(request, 'kotobjy/home.html', context)
 
 @login_required(login_url='/kotobjy/login')
 def Users(request):
     searchform = Search()
     objects = User.objects.all()
     p = Paginator(objects, 4)
-    page = 1
 
     if request.POST.get("next"):
         if int(request.POST.get("next")) < p.num_pages:
             page = int( request.POST.get("next")) +1
+        else:
+            page = int( request.POST.get("next"))
     elif request.POST.get("previous"):
         if int(request.POST.get("previous")) > 1:
             page = int( request.POST.get("previous")) -1
+        else:
+            page = int( request.POST.get("previous"))
+    else:
+        page = 1
 
     if page <= p.num_pages and page > 0:
         usersList = p.page(page)

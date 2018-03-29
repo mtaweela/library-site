@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head%}
+    <title> Index</title>
+{% endblock %}
+
+{% block body %}
+<div class="center">
+<table >
+    <tr>
+        <th></th>
+        <th>Book Title</th>
+        <th>Book Category:</th>
+        <th></th>
+        <th></th>
+    </tr>
+      
+    {% for book in latest_book_list %}
+        <tr>
+            <td><img src="{% static 'kotobjy/pic/' %}/{{ book.pic }}" alt="logo" width="140" height="200"/></td>
+            <td><h3><a href="/kotobjy/book/{{ book.id }}/">{{ book.title }}</a></h3></td>
+            <td>{{book.category}}</td>
+        </tr>
+    {% empty %}
+        <p>No books are available.</p>
+    {% endfor %}
+</table>
+
+<form class="form-inline mt-2 mt-md-0 " action="{% url 'kotobjy:userHome' %}" method="POST">
+    {% csrf_token %}
+    <button class="btn btn-outline-success" name="previous" value="{{ page }}" type="submit">Previous</button>
+    <button class="btn btn-outline-success" name="next" value="{{ page }}" type="submit">Next</button>        
+</form>
+</div>
+{% endblock %}
