@@ -26,5 +26,11 @@
 	<p>Published: {{ book.pub_date }} </p>
 	<p>Describtion: {{ book.describtion }} </p>
 
+	<form class="form-inline mt-2 mt-md-0 " action="" method="POST">
+		{% csrf_token %}
+		<button class="btn btn-outline-success" name="read" value="{{ true }}" type="submit">Read</button>
+		<button class="btn btn-outline-success" name="Favourite" value="{{ true }}" type="submit">Favourite</button>
+	</form>
+
 
 {% endblock %}

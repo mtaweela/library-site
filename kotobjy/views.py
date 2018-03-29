@@ -20,6 +20,9 @@ def index(request):
     return render(request, 'kotobjy/index.html', context)
 
 
+#################### users manipulation ######
+
+
 @login_required(login_url='/kotobjy/login')
 def userHome(request):
     searchform = Search()
@@ -88,7 +91,9 @@ def user_profile(request, user_id):
     }
     return render(request, 'kotobjy/user.html', context)
 
+#################### books manipulation ######
 
+@login_required(login_url='/kotobjy/login')
 def searchBook(request):
     searchform = Search()
 
@@ -124,6 +129,7 @@ def bookDetail(request, book_id):
     }
     return render(request, 'kotobjy/bookDetail.html', context)
 
+#################### author ######
 @login_required(login_url='/kotobjy/login')
 def authorDetail(request, author_id):
     searchform = Search()
@@ -134,7 +140,8 @@ def authorDetail(request, author_id):
     }
     return render(request, 'kotobjy/authorDetail.html', context)
 
-# logging and authentication 
+#################### logging and authentication ######
+
 
 def login_view(request):
     searchform = Search()
