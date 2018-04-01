@@ -146,10 +146,12 @@ def bookDetail(request, book_id):
         authId = aid[0].author_id_id
         author = Author.objects.get(id=authId)
     
+    rate = 3
     context = {
         'book': book,
         'searchform':searchform,
         'author': author,
+        'rate': rate,
         'flag':flag
     }
     return render(request, 'kotobjy/bookDetail.html', context)

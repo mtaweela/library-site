@@ -41,6 +41,7 @@ class Book(models.Model):
     describtion = models.CharField(max_length=2000)
     category = models.CharField(max_length=200, null=False)
     pub_date = models.DateField('date published')
+    rate = models.IntegerField(default=0)
 
 
 class Ex_user(models.Model):

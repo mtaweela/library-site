@@ -22,6 +22,15 @@
 	</p>
 
 	<img src="{% static 'kotobjy/pic/' %}/{{ book.pic }}" alt="logo" width="240"/> 
+	<br>
+	{% for i in "xxxxx" %}
+		{% if forloop.counter0  <= book.rate %}
+			<img src="{% static 'kotobjy/pic/startB.png' %}" alt="logo" width="40" height="40"/> 
+		{% else %}
+			<img src="{% static 'kotobjy/pic/starL.png' %}" alt="logo" width="40" height="40"/> 
+		{% endif %}
+	{% endfor %}
+	
 	<p> Category: {{ book.category }}</p>
 	<p>Published: {{ book.pub_date }} </p>
 	<p>Describtion: {{ book.describtion }} </p>
