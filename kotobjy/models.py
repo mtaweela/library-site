@@ -11,15 +11,14 @@ class Follow(models.Model):
 
 # books that readed by user
 class User_books(models.Model):
-    user_id = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_id = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     book_id = models.ForeignKey('book', on_delete=models.CASCADE,)
-    rate = models.DecimalField(max_digits=1, decimal_places=1, default=0)
-    review = models.TextField(max_length=200,)
+    rate = models.IntegerField(default=0)
 
 
 # user wishlist
 class User_wish_list(models.Model):
-    user_id = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_id = models.OneToOneField(User, on_delete=models.CASCADE,  null=True)
     book_id = models.ForeignKey('book', on_delete=models.CASCADE,)
 
 

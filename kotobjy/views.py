@@ -136,8 +136,42 @@ def searchBook(request):
 def bookDetail(request, book_id):
     searchform = Search()
     book = Book.objects.get(id=book_id)
-    aid = Author_books.objects.filter(book_id=book.id)
+    aid = Author_books.objects.filter(book_id=book.id)    
+    print("*******")
+
     
+
+    read = ""
+    wish = ""
+    # if request.POST:
+    #     if request.POST.get("read") == "true":
+    #         pass
+    #     elif request.POST.get("read") == "false":
+    #         user = User.objects.filter(id=request.user.id)
+    #         u = user[0]
+    #         User_books.objects.create(user_id=u,book_id=book)
+    #         read = "true"
+    #     if request.POST.get("Favourite") == "true":
+    #         pass
+    #     elif request.POST.get("Favourite") == "false":
+    #         user = User.objects.filter(id=request.user.id)
+    #         u = user[0]
+    #         User_wish_list.objects.create(user_id=u,book_id=book)
+    #         wish = "true"
+    # else:
+    #     rB = User_books.objects.filter(user_id=request.user.id)
+    #     rB = rB.filter(book_id=book)
+    #     wB = User_wish_list.objects.filter(user_id=request.user.id)
+    #     wB = rB.filter(book_id=book)
+    #     if rB:
+    #         read = "true"
+    #     else:
+    #         read = "false"
+    #     if wB:
+    #         wish  = "true"
+    #     else:
+    #         wish  = "false"
+
     if not aid:
         flag = False
         author = 0
@@ -152,6 +186,8 @@ def bookDetail(request, book_id):
         'searchform':searchform,
         'author': author,
         'rate': rate,
+        'read': read,
+        'wish': wish,
         'flag':flag
     }
     return render(request, 'kotobjy/bookDetail.html', context)

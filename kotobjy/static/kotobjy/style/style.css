@@ -49,3 +49,25 @@ td,th{
 td{
     text-align: center
 }
+
+.rw {
+    margin: 100px;
+    padding: 30px 30px 30px 30px;
+}
+
+.newform{
+}
+
+.intro{
+    font-size: 30px;
+    text-align: left;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.size{
+    font-size: 30px;
+}
+
+.homeimg{
+    margin: 20px
+}

@@ -35,11 +35,17 @@
 	<p>Published: {{ book.pub_date }} </p>
 	<p>Describtion: {{ book.describtion }} </p>
 
-	<form class="form-inline mt-2 mt-md-0 " action="" method="POST">
+	<form class="newform" action="" method="POST">
 		{% csrf_token %}
-		<button class="btn btn-outline-success" name="read" value="{{ true }}" type="submit">Read</button>
-		<button class="btn btn-outline-success" name="Favourite" value="{{ true }}" type="submit">Favourite</button>
+		{% if read ==  "true" %}
+			<button class=" newform btn btn-success" name="read" value="{{ read }}" type="submit">Read</button>
+		{% else %}
+			<button class=" newform btn btn-outline-success" name="read" value="{{ read }}" type="submit">Read</button>
+		{% endif %}
+		{% if wish ==  "true" %}
+			<button class="btn btn-success " name="wish" value="{{ wish }}" type="submit">Wish</button>
+		{% else %}
+			<button class="btn btn-outline-success" name="wish" value="{{ wish }}" type="submit">Wish</button>
+		{% endif %}
 	</form>
-
-
 {% endblock %}
