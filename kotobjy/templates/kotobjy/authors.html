@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}home page{% endblock %}
+{% block body %}
+<div class="center">
+    <table >
+            <tr>
+                <th></th>
+                <th>Author Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+    
+        {% if 1 < authorsList|length %}
+            <tr>
+                <td><img src="{% static 'kotobjy/pic/' %}/{{ authorsList.0.pic }}" alt="logo" width="140" height="200"/></td>
+                <td><h3><a href="/kotobjy/author/{{ authorsList.0.id }}/">{{authorsList.0.name}}</a></h3></td>
+                <td><p>{{authorsList.0.bio}}</p></td>
+            </tr>
+        {% endif %}
+        {% if 1 < authorsList|length %}
+            <tr>
+                <td><img src="{% static 'kotobjy/pic/' %}/{{ authorsList.1.pic }}" alt="logo" width="140" height="200"/></td>
+                <td><h3><a href="/kotobjy/author/{{ authorsList.1.id }}/">{{authorsList.1.name}}</a></h3></td>
+                <td><p>{{authorsList.1.bio}}</p></td>
+            </tr>
+        {% endif %}
+        {% if 2 < authorsList|length %}
+            <tr>
+                <td><img src="{% static 'kotobjy/pic/' %}/{{ authorsList.2.pic }}" alt="logo" width="140" height="200"/></td>
+                <td><h3><a href="/kotobjy/author/{{ authorsList.2.id }}/">{{authorsList.2.name}}</a></h3></td>
+                <td><p>{{authorsList.2.bio}}</p></td>
+            </tr>
+        {% endif %}
+        {% if 3 < authorsList|length %}
+            <tr>
+                <td><img src="{% static 'kotobjy/pic/' %}/{{ authorsList.3.pic }}" alt="logo" width="140" height="200"/></td>
+                <td><h3><a href="/kotobjy/author/{{ authorsList.3.id }}/">{{authorsList.3.name}}</a></h3></td>
+                <td><p>{{authorsList.3.bio}}</p></td>
+            </tr>
+        {% endif %}
+    </table>
+    <form class="form-inline mt-2 mt-md-0 " action="{% url 'kotobjy:authorsList' %}" method="POST">
+        {% csrf_token %}
+        <button class="btn btn-outline-success" name="previous" value="{{ page }}" type="submit">Previous</button>
+        <button class="btn btn-outline-success" name="next" value="{{ page }}" type="submit">Next</button>        
+    </form>
+</div>
+{% endblock %}

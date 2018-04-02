@@ -13,26 +13,38 @@
                 <th></th>
             </tr>
 
-            <tr>
-                <td><img src="{% static 'kotobjy/pic/' %}/{{ userpicsmap.0 }}" alt="logo" width="140" height="200"/></td>
-                <td><h3><a href="/kotobjy/userProfile/{{ usersList.0.id }}/">{{usersList.0.username}}</a></h3></td>
-                <td>{{usersList.0.email}}</td>
-            </tr>
-            <tr>
-                <td><img src="{% static 'kotobjy/pic/' %}/{{ userpicsmap.1 }}" alt="logo" width="140" height="200"/></td>
-                <td><h3><a href="/kotobjy/userProfile/{{ usersList.1.id }}/">{{usersList.1.username}}</a></h3></td>
-                <td>{{usersList.1.email}}</td>
-            </tr>
-            <tr>
-                <td><img src="{% static 'kotobjy/pic/' %}/{{ userpicsmap.2 }}" alt="logo" width="140" height="200"/></td>
-                <td><h3><a href="/kotobjy/userProfile/{{ usersList.2.id }}/">{{usersList.2.username}}</a></h3></td>
-                <td>{{usersList.2.email}}</td>
-            </tr>
-            <tr>
-                <td><img src="{% static 'kotobjy/pic/' %}/{{ userpicsmap.3 }}" alt="logo" width="140" height="200"/></td>
-                <td><h3><a href="/kotobjy/userProfile/{{ usersList.3.id }}/">{{usersList.3.username}}</a></h3></td>
-                <td>{{usersList.3.email}}</td>
-            </tr>
+            {% if 0 < usersList|length %}
+                {% if usersList.0.username == "admin"  %}
+                {% else %}
+                    <tr>
+                        <td><img src="{% static 'kotobjy/pic/' %}/{{ userpicsmap.0 }}" alt="logo" width="140" height="200"/></td>
+                        <td><h3><a href="/kotobjy/userProfile/{{ usersList.0.id }}/">{{usersList.0.username}}</a></h3></td>
+                        <td>{{usersList.0.email}}</td>
+                    </tr>
+                {% endif %}
+            {% endif %}
+
+            {% if 1 < usersList|length %}
+                <tr>
+                    <td><img src="{% static 'kotobjy/pic/' %}/{{ userpicsmap.1 }}" alt="logo" width="140" height="200"/></td>
+                    <td><h3><a href="/kotobjy/userProfile/{{ usersList.1.id }}/">{{usersList.1.username}}</a></h3></td>
+                    <td>{{usersList.1.email}}</td>
+                </tr>
+            {% endif %}
+            {% if 2 < usersList|length %}
+                <tr>
+                    <td><img src="{% static 'kotobjy/pic/' %}/{{ userpicsmap.2 }}" alt="logo" width="140" height="200"/></td>
+                    <td><h3><a href="/kotobjy/userProfile/{{ usersList.2.id }}/">{{usersList.2.username}}</a></h3></td>
+                    <td>{{usersList.2.email}}</td>
+                </tr>
+            {% endif %}
+            {% if 3 < usersList|length %}
+                <tr>
+                    <td><img src="{% static 'kotobjy/pic/' %}/{{ userpicsmap.3 }}" alt="logo" width="140" height="200"/></td>
+                    <td><h3><a href="/kotobjy/userProfile/{{ usersList.3.id }}/">{{usersList.3.username}}</a></h3></td>
+                    <td>{{usersList.3.email}}</td>
+                </tr>
+            {% endif %}
     </table>
     <form class="form-inline mt-2 mt-md-0 " action="{% url 'kotobjy:users' %}" method="POST">
         {% csrf_token %}

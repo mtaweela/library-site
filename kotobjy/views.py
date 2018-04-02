@@ -18,11 +18,20 @@ def index(request):
 #################### users manipulation ######
 
 
-@login_required(login_url='/kotobjy/login')
-def userHome(request):
+def ShowBookList(request, page):
     searchform = Search()
-    objects = Book.objects.all()
-    
+
+    if page == "home":
+        objects = Book.objects.all()
+    elif page == "read":
+        objects = User_books.objects.all()
+        print("****************")
+        # print(objects[0].title)
+    elif page == "wish":
+        objects = User_wish_list.objects.all()
+        print("****************")
+        # print(objects[0].title)
+
     p = Paginator(objects, 4)
 
     if request.POST.get("next"):
@@ -52,6 +61,12 @@ def userHome(request):
         'page': page,
         'searchform':searchform,
     }
+    return context
+
+
+@login_required(login_url='/kotobjy/login')
+def userHome(request):
+    context = ShowBookList(request, "home")
     return render(request, 'kotobjy/home.html', context)
 
 @login_required(login_url='/kotobjy/login')
@@ -116,6 +131,18 @@ def user_profile(request, user_id):
     }
     return render(request, 'kotobjy/user.html', context)
 
+#################### read and wish listing ######
+@login_required(login_url='/kotobjy/login')
+def Read(request):
+    context = ShowBookList(request, "read")
+    return render(request, 'kotobjy/home.html', context)
+
+
+@login_required(login_url='/kotobjy/login')
+def Wish(request):
+    context = ShowBookList(request, "wish")
+    return render(request, 'kotobjy/home.html', context)
+
 #################### books manipulation ######
 
 @login_required(login_url='/kotobjy/login')
@@ -138,8 +165,6 @@ def bookDetail(request, book_id):
     book = Book.objects.get(id=book_id)
     aid = Author_books.objects.filter(book_id=book.id)    
     print("*******")
-
-    
 
     read = ""
     wish = ""
@@ -202,6 +227,40 @@ def authorDetail(request, author_id):
         'searchform':searchform,
     }
     return render(request, 'kotobjy/authorDetail.html', context)
+
+
+@login_required(login_url='/kotobjy/login')
+def listAuthors(request):
+    searchform = Search()
+    authors = Author.objects.all()
+    
+    p = Paginator(authors, 4)
+
+    if request.POST.get("next"):
+        if int(request.POST.get("next")) < p.num_pages:
+            page = int( request.POST.get("next")) +1
+        else:
+            page = int( request.POST.get("next"))
+    elif request.POST.get("previous"):
+        if int(request.POST.get("previous")) > 1:
+            page = int( request.POST.get("previous")) -1
+        else:
+            page = int( request.POST.get("previous"))
+    else:
+        page = 1
+
+    if page <= p.num_pages and page > 0:
+        authorsList = p.page(page)
+    else:
+        authorsList = []
+
+    page = str(page)
+    context = {
+        'authorsList': authorsList,
+        'page': page,
+        'searchform':searchform,
+    }
+    return render(request, 'kotobjy/authors.html', context)
 
 #################### logging and authentication ######
 

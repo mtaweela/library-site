@@ -20,10 +20,16 @@
 						<a class="nav-link" href="{% url 'kotobjy:userHome' %}">Home <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Authors</a>
+						<a class="nav-link" href="{% url 'kotobjy:authorsList' %}">Authors</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link disabled" href="{% url 'kotobjy:users' %}">Users</a>
+						<a class="nav-link" href="{% url 'kotobjy:users' %}">Users</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'kotobjy:readlist' %}">Read bookd</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'kotobjy:wishlist' %}">Wish list</a>
 					</li>
 				</ul>
 
