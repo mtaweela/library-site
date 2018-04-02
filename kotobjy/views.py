@@ -24,13 +24,16 @@ def ShowBookList(request, page):
     if page == "home":
         objects = Book.objects.all()
     elif page == "read":
-        objects = User_books.objects.all()
-        print("****************")
-        # print(objects[0].title)
+        objects = []
+        for book in User_books.objects.filter(user_id=request.user.id):
+            wBook = Book.objects.filter(id=book.book_id.id)
+            objects.append(wBook[0])
+
     elif page == "wish":
-        objects = User_wish_list.objects.all()
-        print("****************")
-        # print(objects[0].title)
+        objects = []
+        for book in User_wish_list.objects.filter(user_id=request.user.id):
+            wBook = Book.objects.filter(id=book.book_id.id)
+            objects.append(wBook[0])
 
     p = Paginator(objects, 4)
 
@@ -54,8 +57,6 @@ def ShowBookList(request, page):
 
     userpics = Ex_user.objects.all()
 
-
-    # bookList = [bid.id for bid in latest_book_list]
     context = {
         'latest_book_list': bookList,
         'page': page,
