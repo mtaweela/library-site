@@ -16,7 +16,7 @@ urlpatterns = [
     url(r'^login/$', views.login_view , name='login'),
     url(r'^logout/$', views.logout_view, name='logout'),
     path('book/<int:book_id>/', views.bookDetail, name='bookDetail'),
-    path('author/<int:author_id>/', views.authorDetail, name='authorDetail'),
+    path('author/<int:authorId>/', views.authorDetail, name='authorDetail'),
     path('authorsList/', views.listAuthors, name='authorsList'),
     path('search/', views.searchBook, name='searchBook'),
 ]

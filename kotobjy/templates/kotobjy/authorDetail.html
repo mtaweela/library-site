@@ -16,5 +16,33 @@
 
             <p> Bio: {{ author.bio }}</p>
             <link rel="stylesheet" type="text/css" href="{% static 'kotobjy/style/style.css' %}" />
+            <br/>
+            <br/>
+
+            {% if authorBooks %}
+            <h3>Author books</h3>
+                  <table >
+                        <tr>
+                              <th></th>
+                              <th>Book Title</th>
+                              <th>Book Category:</th>
+                              <th></th>
+                              <th></th>
+                        </tr>
+                        
+                        {% for book in authorBooks %}
+                              <tr>
+                                    <td><img src="{% static 'kotobjy/pic/' %}/{{ book.pic }}" alt="logo" width="140" height="200"/></td>
+                                    <td><h3><a href="/kotobjy/book/{{ book.id }}/">{{ book.title }}</a></h3></td>
+                                    <td>{{book.category}}</td>
+                              </tr>
+                        {% empty %}
+                              <p>No books are available.</p>
+                        {% endfor %}
+                  </table>
+            {% else %}
+                  <h4>Author does not have any related books yet</h4>
+            {% endif %}
+              
       </div>
 {% endblock %}
