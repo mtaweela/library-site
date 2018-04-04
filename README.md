@@ -5,9 +5,7 @@ still there are alot of not completed futures and we are still working on the de
 
 ## Getting Started
 
-##############
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-##############
 
 ### Requirements
 
@@ -17,6 +15,7 @@ You need
 - MYSQL
 
 ###Usage
+
 You could browse the website by running the server using the following command(you need to be in the same folder with manage.py)
 
 ```
