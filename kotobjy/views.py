@@ -169,34 +169,35 @@ def bookDetail(request, book_id):
 
     read = ""
     wish = ""
-    # if request.POST:
-    #     if request.POST.get("read") == "true":
-    #         pass
-    #     elif request.POST.get("read") == "false":
-    #         user = User.objects.filter(id=request.user.id)
-    #         u = user[0]
-    #         User_books.objects.create(user_id=u,book_id=book)
-    #         read = "true"
-    #     if request.POST.get("Favourite") == "true":
-    #         pass
-    #     elif request.POST.get("Favourite") == "false":
-    #         user = User.objects.filter(id=request.user.id)
-    #         u = user[0]
-    #         User_wish_list.objects.create(user_id=u,book_id=book)
-    #         wish = "true"
-    # else:
-    #     rB = User_books.objects.filter(user_id=request.user.id)
-    #     rB = rB.filter(book_id=book)
-    #     wB = User_wish_list.objects.filter(user_id=request.user.id)
-    #     wB = rB.filter(book_id=book)
-    #     if rB:
-    #         read = "true"
-    #     else:
-    #         read = "false"
-    #     if wB:
-    #         wish  = "true"
-    #     else:
-    #         wish  = "false"
+
+    if request.POST:
+        if request.POST.get("read") == "true":
+            pass
+        elif request.POST.get("read") == "false":
+            user = User.objects.filter(id=request.user.id)
+            u = user[0]
+            User_books.objects.create(user_id=u,book_id=book)
+            read = "true"
+        if request.POST.get("Favourite") == "true":
+            pass
+        elif request.POST.get("Favourite") == "false":
+            user = User.objects.filter(id=request.user.id)
+            u = user[0]
+            User_wish_list.objects.create(user_id=u,book_id=book)
+            wish = "true"
+    else:
+        rB = User_books.objects.filter(user_id=request.user.id)
+        rB = rB.filter(book_id=book)
+        wB = User_wish_list.objects.filter(user_id=request.user.id)
+        wB = rB.filter(book_id=book)
+        if rB:
+            read = "true"
+        else:
+            read = "false"
+        if wB:
+            wish  = "true"
+        else:
+            wish  = "false"
 
     if not aid:
         flag = False
@@ -220,12 +221,18 @@ def bookDetail(request, book_id):
 
 #################### author ######
 @login_required(login_url='/kotobjy/login')
-def authorDetail(request, author_id):
+def authorDetail(request, authorId):
     searchform = Search()
-    author = Author.objects.get(id=author_id)
+    author = Author.objects.get(id=authorId)
+    books = Author_books.objects.filter(author_id=authorId)
+    authorBooks = []
+    for book in books:
+        authorBooks.append(book.book_id)
+
     context = {
         'author': author,
         'searchform':searchform,
+        'authorBooks':authorBooks
     }
     return render(request, 'kotobjy/authorDetail.html', context)
 
